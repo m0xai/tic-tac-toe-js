@@ -1,30 +1,51 @@
+// TODO: Add name change function
+
 const initGame = (function () {
+  const scores = {
+    player1: localStorage.getItem('player1Score') || 0,
+    player2: localStorage.getItem('player2Score') || 0,
+  };
+
   document.getElementById('postNames').addEventListener('click', postNames);
 
+  // Get player names and hide form
   function postNames() {
     getNames();
-    document.getElementById('player1Name').value = '';
-    document.getElementById('player1Name').value = '';
+    toggleElements();
   }
 
-  function getNames() {
-    let player1Name = document.getElementById('player1Name').value;
-    let player2Name = document.getElementById('player2Name').value;
-    return { player1Name, player2Name };
+  function hideElements() {
+    localStorage.setItem('hideItem', 'none');
+    localStorage.setItem('showItem', 'inline');
+    document.getElementById('playerNames').style.display = localStorage.getItem('hideItem');
+    document.getElementById('showPlayerNames').style.display = localStorage.getItem('showItem');
+    document.getElementById('showPlayerScores').style.display = localStorage.getItem('showItem');
   }
+
+  // store names on localStorage and print them on screen
+  function getNames() {
+    // Store names on LS
+    let player1Name = document.getElementById('player1Name');
+    let player2Name = document.getElementById('player2Name');
+    localStorage.setItem('player1', JSON.stringify(player1Name.value));
+    localStorage.setItem('player2', JSON.stringify(player2Name.value));
+    // Get names from LS
+    let getPlayer1Name = localStorage.getItem('player1');
+    let getPlayer2Name = localStorage.getItem('player2');
+    // Print names with scores
+    document.getElementById('player1Score').textContent = `${JSON.parse(getPlayer1Name)}: ${scores.player1}`;
+    document.getElementById('player2Score').textContent = `${JSON.parse(getPlayer2Name)}: ${scores.player2}`;
+
+    return { getPlayer1Name, getPlayer2Name };
+  }
+
+  // Hide form, if LS stores names
+  if (getNames().getPlayer1Name !== '""' && getNames().getPlayer2Name !== '""') hideElements();
 
   const players = {
     player1: getNames().player1Name,
     player2: getNames().player1Name,
   };
-  const scores = {
-    player1: 0,
-    player2: 0,
-  };
-
-  // Show scores
-  const printPlayer1Score = (document.getElementById('player1Score').textContent = `Player 1: ${scores.player1}`);
-  const printPlayer2Score = (document.getElementById('player2Score').textContent = `Player 2: ${scores.player2}`);
 
   // Define Buttons
   const box = document.querySelectorAll('.box');
@@ -85,10 +106,8 @@ const initGame = (function () {
   }
 
   return {
-    moves,
-    box,
-    players,
     getNames,
     xOrO,
+    hideElements,
   };
 })();

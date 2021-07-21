@@ -7,44 +7,44 @@
     <title>Tic Tac Toe with Algorithm</title>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="app.js" defer></script>
 </head>
 <body>
     <header id="header">
         <h1 id="site-name">Tic Tac Toe with Algorithm</h1>
         <section id="playerNames">
-            <form action="submit">
+            <form>
                 <label for="player1Name">Player 1 Name:</label>
                 <input type="text" name="playerName" id="player1Name">
                 <label for="player2Name">Player 2 Name:</label>
                 <input type="text" name="playerName" id="player2Name">
+                <h3>Select for Player 1</h3>
+                <div>
+                    <span id="player1Select">Player 1</span>
+                    <input class="toggle toggle-left" type="radio" name="XorO" id="player1X" value="x" checked>
+                    <label class="btn" for="player1X">X</label>
+                    <input class="toggle toggle-right" type="radio" name="XorO" id="player1O" value="x">
+                    <label class="btn" for="player1O">O</label>
+                </div>
                 <button type="button" id="postNames">Save Names</button>
             </form>
         </section>
-            <section id="selectSide">
-                <form>
-                    <h3>Select for Player 1</h3>
-                    <div>
-                        <span id="player1Select">Player 1</span>
-                        <input class="toggle toggle-left" type="radio" name="XorO" id="player1X" value="x" checked>
-                        <label class="btn" for="player1X">X</label>
-                        <input class="toggle toggle-right" type="radio" name="XorO" id="player1O" value="x">
-                        <label class="btn" for="player1O">O</label>
-                    </div>
-                </form>
-                    <div>
-                        <h4 id="player2Select"></h4>
-                    </div>
-            </section>
-            <section id="scoreboard">
-                <h3 class="showPlayerScores">
-                    Player Scores
-                </h3>
-                <div class="players">
-                    <span id="player1Score"></span>
-                    <span id="player2Score"></span>
-                </div>
-            </section>
+        <div id="showPlayerNames">
+            <span id="showPlayer1Name"></span>
+            <span id="showPlayer2Name"></span>
+        </div>
+        <section id="scoreboard">
+            <h3>
+                Player Scores
+            </h3>
+            <div id="showPlayerScores" class="players">
+                <span id="player1Score"></span>
+                <span id="player2Score"></span>
+            </div>
+        </section>
     </header>
     <main id="site-main">
         <section id="game-controls">
