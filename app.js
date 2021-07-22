@@ -114,7 +114,31 @@ const initGame = (function () {
     }
   }
 
-  function checkWinner() {}
+  function checkWinner() {
+    const winningConditions = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i <= 7; i++) {
+      let a = winningConditions[i][0];
+      let b = winningConditions[i][1];
+      let c = winningConditions[i][2];
+
+      if (gameState[a] == '' || gameState[b] == '' || gameState[c] == '') {
+        continue;
+      } else if (gameState[a] == gameState[b] && gameState[a] == gameState[c] && gameState[b] == gameState[c]) {
+        console.log(gameState[a] + 'Wins!');
+        playing = false;
+      }
+    }
+  }
 
   // Reset game table
   function resetGame() {
