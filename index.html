@@ -21,28 +21,16 @@
                 <input type="text" name="playerName" id="player1Name">
                 <label for="player2Name">Player 2 Name(O):</label>
                 <input type="text" name="playerName" id="player2Name">
-                <h3>Select for Player 1</h3>
-                <div>
-                    <span id="player1Select">Player 1</span>
-                    <input class="toggle toggle-left" type="radio" name="XorO" id="player1X" value="x" checked>
-                    <label class="btn" for="player1X">X</label>
-                    <input class="toggle toggle-right" type="radio" name="XorO" id="player1O" value="x">
-                    <label class="btn" for="player1O">O</label>
-                </div>
                 <button type="button" id="postNames">Save Names</button>
             </form>
         </section>
-        <div id="showPlayerNames">
-            <span id="showPlayer1Name"></span>
-            <span id="showPlayer2Name"></span>
-        </div>
         <section id="scoreboard">
             <h3>
                 Player Scores
             </h3>
-            <div id="showPlayerScores" class="players">
-                <span id="player1Score"></span>
-                <span id="player2Score"></span>
+            <div class="players">
+                <span id="showPlayer1"></span>
+                <span id="showPlayer2"></span>
             </div>
         </section>
     </header>
