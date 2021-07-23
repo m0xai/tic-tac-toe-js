@@ -160,8 +160,8 @@ const initGame = (function () {
       } else if (gameState[a] == gameState[b] && gameState[a] == gameState[c] && gameState[b] == gameState[c]) {
         console.log(gameState[a].toUpperCase() + ' Wins!');
         if (gameState[a] == 'x') updateScoreLS('players', 'player1', 'score', 1);
-        if (gameState[a] == 'x') getPlayers.player2.score++;
-        updateScreen();
+        if (gameState[a] == 'o') updateScoreLS('players', 'player2', 'score', 1);
+        printInfo();
         playing = false;
       }
     }
@@ -174,6 +174,7 @@ const initGame = (function () {
     updateScoreLS('players', 'player1', 'score', 0);
     updateScoreLS('players', 'player2', 'score', 0);
     printInfo();
+    playing = true;
   }
 
   return {
