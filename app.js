@@ -163,6 +163,8 @@ const initGame = (function () {
         if (gameState[a] == 'o') updateScoreLS('players', 'player2', 'score', 1);
         printInfo();
         playing = false;
+      } else if (!(gameState[a] == gameState[b]) && !gameState.includes('')) {
+        console.log(`It's a draw!`);
       }
     }
   }
