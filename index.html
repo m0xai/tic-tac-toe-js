@@ -14,32 +14,42 @@
 </head>
 <body>
     <header id="header">
-        <h1 id="site-name">Tic Tac Toe with Algorithm</h1>
+        <h1 id="site-name">Tic Tac Toe</h1>
         <section id="playerNames">
-            <form>
-                <label for="player1Name">Player 1 Name(X):</label>
-                <input type="text" name="playerName" id="player1Name">
-                <label for="player2Name">Player 2 Name(O):</label>
-                <input type="text" name="playerName" id="player2Name">
+            <form id="playerNamesForm">
+                <div id="player1Form">
+                    <span>X</span>
+                    <label for="player1Name">Player 1</label>
+                    <input type="text" name="playerName" placeholder="Enter 1st player name" id="player1Name" required>
+                </div>
+                <div id="player2Form">
+                    <span>O</span>
+                    <label for="player2Name">Player 2</label>
+                    <input type="text" name="playerName" placeholder="Enter 2nd player name" id="player2Name" required>
+                </div>
+                <br>
                 <button type="button" id="postNames">Save Names</button>
             </form>
         </section>
         <section id="scoreboard">
-            <h3>
+            <h2>
                 Player Scores
-            </h3>
-            <div class="players">
-                <span id="showPlayer1"></span>
-                <span id="showPlayer2"></span>
+            </h2>
+            <div id="playerScores" class="players">
+                <div id="player1Form">
+                    <span>X</span>
+                    <p id="showPlayer1Name"></p>
+                    <h4 id="showPlayer1Score"></h4>
+                </div>
+                <div id="player2Form">
+                    <span>O</span>
+                    <p id="showPlayer2Name"></p>
+                    <h4 id="showPlayer2Score"></h4>
+                </div>
             </div>
         </section>
     </header>
     <main id="site-main">
-        <section id="game-controls">
-            <button id="resetBtn">Reset Game</button>
-        </section>
-        <section class="buttons">
-        </section>
         <section id="game">
             <div data-id="0" class="box"></div>
             <div data-id="1" class="box"></div>
@@ -50,6 +60,10 @@
             <div data-id="6" class="box"></div>
             <div data-id="7" class="box"></div>
             <div data-id="8" class="box"></div>
+        </section>
+        <section id="game-controls">
+            <button id="resetRoundBtn">Reset Round</button>
+            <button id="resetGameBtn">Reset Game</button>
         </section>
     </main>
 </body>

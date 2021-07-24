@@ -34,18 +34,104 @@ body {
   font-weight: 700;
 }
 
-#game-controls {
-  height: 100px;
+#playerNamesForm,
+#playerScores {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
-#resetBtn {
-  padding: 20px 40px;
+input {
+  width: 125px;
+}
+
+::placeholder {
+  font-size: 12px;
+}
+
+#player1Form,
+#player2Form {
+  flex: 1 0 50%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+}
+
+#player1Form > label,
+#player2Form > label {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+#player1Form > span {
+  padding: 0px 20px;
+  border: 1px transparent;
+  border-radius: 5px;
+  background-color: rgba(205, 205, 205, 0.333);
+  color: blue;
+  font-size: 40px;
+}
+
+#player2Form > span {
+  padding: 0px 15px;
+  border: 1px transparent;
+  border-radius: 5px;
+  background-color: rgba(205, 205, 205, 0.333);
+  color: magenta;
+  font-size: 40px;
+}
+
+#postNames {
+  margin-top: 15px;
+  width: 0 1 100%;
+  padding: 15px;
   border: none;
   background-color: dodgerblue;
   color: white;
   opacity: 87%;
   text-transform: uppercase;
-  font-weight: bold;
+  border-radius: 3px;
+  box-shadow: 0px 3px 10px dodgerblue;
+}
+
+#postNames:hover:active {
+  background-color: rgb(26, 114, 202);
+  box-shadow: 0px 3px 10px rgb(26, 114, 202);
+}
+
+#showPlayer1Name,
+#showPlayer2Name {
+  margin: 5px 0 0 0;
+}
+
+#showPlayer1Score,
+#showPlayer2Score {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  border: 1px transparent;
+  border-radius: 5px;
+  background-color: rgba(205, 205, 205, 0.333);
+}
+
+#game-controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#resetRoundBtn,
+#resetGameBtn {
+  margin-top: 15px;
+  width: 0 1 100%;
+  padding: 15px;
+  border: none;
+  background-color: dodgerblue;
+  color: white;
+  opacity: 87%;
+  text-transform: uppercase;
+  border-radius: 3px;
+  box-shadow: 0px 3px 10px dodgerblue;
 }
 
 #resetBtn:hover {
@@ -56,69 +142,19 @@ body {
 #game {
   height: 308px;
   width: 308px;
-  background: linear-gradient(258deg, #e1dada, #bdcad9);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  border: 10px solid red;
+  border: 1px solid blue;
   align-items: center;
 }
 
 .box {
-  border: 1px solid crimson;
+  margin: 0px;
+  border: 1px solid #121212;
   width: 100px;
   height: 100px;
   font-size: 66px;
   font-family: 'Permanent Marker', cursive;
   text-align: center;
-}
-
-.btn {
-  border: 3px solid #1a1a1a;
-  display: inline-block;
-  padding: 10px;
-  position: relative;
-  text-align: center;
-  transition: background 600ms ease, color 600ms ease;
-}
-input[type='radio'].toggle {
-  display: none;
-}
-input[type='radio'].toggle + label {
-  cursor: pointer;
-  min-width: 60px;
-}
-input[type='radio'].toggle + label:hover {
-  background: none;
-  color: #1a1a1a;
-}
-input[type='radio'].toggle + label:after {
-  background: #1a1a1a;
-  content: '';
-  height: 100%;
-  position: absolute;
-  top: 0;
-  transition: left 200ms cubic-bezier(0.77, 0, 0.175, 1);
-  width: 100%;
-  z-index: -1;
-}
-input[type='radio'].toggle.toggle-left + label {
-  border-right: 0;
-}
-input[type='radio'].toggle.toggle-left + label:after {
-  left: 100%;
-}
-input[type='radio'].toggle.toggle-right + label {
-  margin-left: -5px;
-}
-input[type='radio'].toggle.toggle-right + label:after {
-  left: -100%;
-}
-input[type='radio'].toggle:checked + label {
-  cursor: default;
-  color: #fff;
-  transition: color 200ms;
-}
-input[type='radio'].toggle:checked + label:after {
-  left: 0;
 }

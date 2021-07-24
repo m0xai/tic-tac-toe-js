@@ -1,6 +1,7 @@
 // TODO: Add name change function
 
 const initGame = (function () {
+  const gameArea = document.getElementById('game');
   const player1Indicator = 'x';
   const player2Indicator = 'o';
 
@@ -43,8 +44,10 @@ const initGame = (function () {
   }
 
   function printInfo() {
-    document.getElementById('showPlayer1').textContent = `${getFromLS('players').player1.name} : ${getFromLS('players').player1.score}`;
-    document.getElementById('showPlayer2').textContent = `${getFromLS('players').player2.name} : ${getFromLS('players').player2.score}`;
+    document.getElementById('showPlayer1Name').textContent = `${getFromLS('players').player1.name}`;
+    document.getElementById('showPlayer2Name').textContent = `${getFromLS('players').player2.name}`;
+    document.getElementById('showPlayer1Score').textContent = `${getFromLS('players').player1.score}`;
+    document.getElementById('showPlayer2Score').textContent = `${getFromLS('players').player2.score}`;
   }
   printInfo();
 
@@ -54,42 +57,20 @@ const initGame = (function () {
   } else {
     grabNames();
   }
-  // // store names on localStorage and print them on screen
-  // function getNames() {
-  //   let player1Name = document.getElementById('player1Name');
-  //   let player2Name = document.getElementById('player2Name');
-  //   // Get names from LS
-  //   let getPlayer1Name = localStorage.getItem('player1');
-  //   let getPlayer2Name = localStorage.getItem('player2');
-  //   // Store names on LS
-  //   if (getPlayer1Name == '""' || getPlayer2Name == '""') {
-  //     localStorage.setItem('player1', JSON.stringify(player1Name.value));
-  //     localStorage.setItem('player2', JSON.stringify(player2Name.value));
-  //   }
-  //   // Print names with scores
-  //   document.getElementById('player1Score').textContent = `${JSON.parse(getPlayer1Name)}: ${getPlayers.player1.score}`;
-  //   document.getElementById('player2Score').textContent = `${JSON.parse(getPlayer2Name)}: ${getPlayers.player2.score}`;
-  //   return { getPlayer1Name, getPlayer2Name };
-  // }
-
-  // const players = {
-  //   player1: getNames().player1Name,
-  //   player2: getNames().player1Name,
-  // };
-
-  // Hide the form, if LS stores names
 
   // Define Buttons
   const box = document.querySelectorAll('.box');
-  const resetBtn = document.getElementById('resetBtn');
-  resetBtn.addEventListener('click', resetGame);
+  const resetRoundBtn = document.getElementById('resetRoundBtn');
+  const resetGameBtn = document.getElementById('resetGameBtn');
+  resetRoundBtn.addEventListener('click', resetRound);
+  resetGameBtn.addEventListener('click', resetGame);
 
   // Add functionalitys to boxes
   box.forEach((item) => {
     item.addEventListener('click', xOrO);
     item.addEventListener('mouseover', (e) => {
       let getTextCon = e.target.textContent;
-      getTextCon == '' ? (e.target.style.backgroundColor = 'grey') : false;
+      getTextCon == '' ? (e.target.style.cssText = 'background-color: rgba(255, 255, 255, .5);') : false;
     });
     item.addEventListener('mouseout', (e) => {
       e.target.style.backgroundColor = '';
@@ -128,6 +109,8 @@ const initGame = (function () {
         function pushGameState(val, curr) {
           gameState[curr] = val;
           currBox.textContent = val;
+          if (val === 'o') gameArea.style.border = '1px solid blue';
+          if (val === 'x') gameArea.style.border = '1px solid magenta';
         }
         pushGameState(currValue, currBoxIndex);
         console.log(gameState, currBoxIndex);
@@ -159,17 +142,40 @@ const initGame = (function () {
         continue;
       } else if (gameState[a] == gameState[b] && gameState[a] == gameState[c] && gameState[b] == gameState[c]) {
         console.log(gameState[a].toUpperCase() + ' Wins!');
-        if (gameState[a] == 'x') updateScoreLS('players', 'player1', 'score', 1);
-        if (gameState[a] == 'o') updateScoreLS('players', 'player2', 'score', 1);
+        if (gameState[a] == 'x') {
+          updateScoreLS('players', 'player1', 'score', 1);
+          gameArea.style.border = '1px solid blue';
+          gameArea.innerHTML = `
+          <h1 style="margin: 0 auto">
+          ${getFromLS('players').player1.name} Won!
+          </h1>
+          `;
+        }
+        if (gameState[a] == 'o') {
+          updateScoreLS('players', 'player2', 'score', 1);
+          gameArea.style.border = '1px solid magenta';
+          gameArea.innerHTML = `
+          <h1 style="margin: 0 auto">
+          ${getFromLS('players').player2.name} Won!
+          </h1>
+          `;
+        }
         printInfo();
         playing = false;
-      } else if (!(gameState[a] == gameState[b]) && !gameState.includes('')) {
+      } else if (gameState.filter((item) => item === '').length === 0) {
         console.log(`It's a draw!`);
+        playing = false;
       }
     }
   }
 
   // Reset game table
+  function resetRound() {
+    box.forEach((item) => (item.textContent = ''));
+    gameState = ['', '', '', '', '', '', '', '', ''];
+    playing = true;
+    window.location.reload();
+  }
   function resetGame() {
     box.forEach((item) => (item.textContent = ''));
     gameState = ['', '', '', '', '', '', '', '', ''];
@@ -177,6 +183,7 @@ const initGame = (function () {
     updateScoreLS('players', 'player2', 'score', 0);
     printInfo();
     playing = true;
+    window.location.reload();
   }
 
   return {
