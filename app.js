@@ -21,7 +21,7 @@ const initGame = (function () {
 
   function hideElements() {
     document.getElementById('playerNames').style.display = 'none';
-    document.getElementById('site-main').style.display = 'inline';
+    document.getElementById('site-main').style.display = 'flex';
   }
 
   function grabNames() {
