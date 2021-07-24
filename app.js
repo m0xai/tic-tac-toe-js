@@ -16,11 +16,12 @@ const initGame = (function () {
   function postNames() {
     grabNames();
     hideElements();
+    window.location.reload();
   }
 
   function hideElements() {
     document.getElementById('playerNames').style.display = 'none';
-    document.getElementById('scoreboard').style.display = 'inline';
+    document.getElementById('site-main').style.display = 'inline';
   }
 
   function grabNames() {

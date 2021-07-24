@@ -82,7 +82,7 @@ input {
 }
 
 #postNames {
-  margin-top: 15px;
+  margin: 15px 0;
   width: 0 1 100%;
   padding: 15px;
   border: none;
@@ -118,6 +118,10 @@ input {
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+}
+
+#site-main {
+  display: none;
 }
 
 #resetRoundBtn,
