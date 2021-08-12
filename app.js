@@ -1,4 +1,5 @@
 // TODO: Add name change function
+// TODO: Add Webpack bundle system
 
 const initGame = (function () {
   const gameArea = document.getElementById('game');
