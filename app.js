@@ -190,7 +190,6 @@ const initGame = (function () {
 
   return {
     xOrO,
-    gameState,
     setLS,
     getFromLS,
     updateScoreLS,
