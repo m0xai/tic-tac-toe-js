@@ -149,7 +149,7 @@ const initGame = (function () {
           gameArea.style.border = '1px solid blue';
           gameArea.innerHTML = `
           <h1 style="margin: 0 auto">
-          ${getFromLS('players').player1.name} Wins!
+          ${getFromLS('players').player1.name} is Won!
           </h1>
           `;
         }
